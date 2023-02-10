@@ -1,5 +1,5 @@
 provider "libvirt" {
-  uri = "qemu+ssh://deploys@ams-kvm-remote-host/system"
+  uri = "qemu+ssh://libvirt_deploys@ams-kvm-remote-host/system"
 }
 
 resource "libvirt_pool" "zabbix" {
@@ -76,7 +76,7 @@ resource "libvirt_domain" "domain-zabbix" {
       host                = libvirt_domain.domain-zabbix.network_interface[0].addresses[0]
       private_key         = file(var.ssh_private_key)
       bastion_host        = "ams-kvm-remote-host"
-      bastion_user        = "deploys"
+      bastion_user        = "libvirt_deploys"
       bastion_private_key = file("~/.ssh/libvirt_deploys.pem")
       timeout             = "2m"
     }
