@@ -15,10 +15,10 @@ variable "zabbix_vm_hostname" {
 
 variable "ssh_username" {
   description = "the ssh user to use"
-  default     = "zabbix"
+  default     = "ubuntu"
 }
 
 variable "ssh_private_key" {
   description = "the private key to use"
-  default     = "~/.ssh/id_libvirt"
+  default     = "~/.ssh/id_rsa"
 }

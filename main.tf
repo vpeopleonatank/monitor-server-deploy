@@ -1,5 +1,5 @@
 provider "libvirt" {
-  uri = "qemu+ssh://libvirt_deploys@ams-kvm-remote-host/system"
+  uri = "qemu+ssh://libvirt_deploys@mosv.vpoat.net/system"
 }
 
 resource "libvirt_pool" "zabbix" {
@@ -65,30 +65,30 @@ resource "libvirt_domain" "domain-zabbix" {
     autoport    = true
   }
 
-  provisioner "remote-exec" {
-    inline = [
-      "echo 'Hello World'"
-    ]
+  # provisioner "remote-exec" {
+  #   inline = [
+  #     "echo 'Hello World'"
+  #   ]
 
-    connection {
-      type                = "ssh"
-      user                = var.ssh_username
-      host                = libvirt_domain.domain-zabbix.network_interface[0].addresses[0]
-      private_key         = file(var.ssh_private_key)
-      bastion_host        = "ams-kvm-remote-host"
-      bastion_user        = "libvirt_deploys"
-      bastion_private_key = file("~/.ssh/libvirt_deploys.pem")
-      timeout             = "2m"
-    }
-  }
+  #   connection {
+  #     type                = "ssh"
+  #     user                = var.ssh_username
+  #     host                = libvirt_domain.domain-zabbix.network_interface[0].addresses[0]
+  #     private_key         = file(var.ssh_private_key)
+  #     bastion_host        = "mosv.vpoat.net"
+  #     bastion_user        = "libvirt_deploys"
+  #     bastion_private_key = file("~/.ssh/libvirt_deploys.pem")
+  #     timeout             = "2m"
+  #   }
+  # }
 
-  provisioner "local-exec" {
-    command = <<EOT
-      echo "[nginx]" > nginx.ini
-      echo "${libvirt_domain.domain-zabbix.network_interface[0].addresses[0]}" >> nginx.ini
-      echo "[nginx:vars]" >> nginx.ini
-      echo "ansible_ssh_common_args='-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ProxyCommand=\"ssh -W %h:%p -q ams-kvm-remote-host\"'" >> nginx.ini
-      ansible-playbook -u ${var.ssh_username} --private-key ${var.ssh_private_key} -i nginx.ini ansible/playbook.yml
-      EOT
-  }
+  # provisioner "local-exec" {
+  #   command = <<EOT
+  #     echo "[nginx]" > nginx.ini
+  #     echo "${libvirt_domain.domain-zabbix.network_interface[0].addresses[0]}" >> nginx.ini
+  #     echo "[nginx:vars]" >> nginx.ini
+  #     echo "ansible_ssh_common_args='-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ProxyCommand=\"ssh -W %h:%p -q ams-kvm-remote-host\"'" >> nginx.ini
+  #     ansible-playbook -u ${var.ssh_username} --private-key ${var.ssh_private_key} -i nginx.ini ansible/playbook.yml
+  #     EOT
+  # }
 }
