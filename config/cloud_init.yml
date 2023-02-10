@@ -21,5 +21,5 @@ users:
     shell: /bin/bash
     lock_passwd: false
     ssh-authorized-keys:
-      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEcsyY7u0l8jUN9Gh9uO08XCLd/PBf1eAqSU9W+HfA6n monitor@monitor
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC2OHnS8p29ROQQOZXNZZKv7N6N//V7uD9yrQQv7Z3vl5PWsGw7CQ3KM/V6Sml+efMnUnjMmAzexOc9mDaSVWsPNF89+gId1kCKnEjsknDZgMc0jXENkJ5E4L/jHQ8dUQHlspktubJ4voSGMg1G0sV6+U46e84ipMkMd9ufMlsxr7fWMspdtn47wYqA1FxK7hNrMCqiPAFp99aEnaXVFbO8KxSUWuSD5I1+McA06y9ZVDSi6nVTs8W3O7VZ+Rl4DcAKN0rOv8x7AwtB2kAprWxXZ/9qtRopIB0PIT39nGa8uGNzA8PcllFnAPIa7hmJ0Mc/6L0h1C8bNirZKcgMd3PPXUE9abm5HL5G4bjDaNcGN4JdfGi6zuBZxTAhBJgtd20uIZbO2ykm8DeLgwW8C9+3ZaefTZIj+D4unAK1MrYrb0KoejUvB/PgnDdV0VrxKZpZLWc4V/0wux+9jpEbB8jOhArRtaoci0qvt2lkJTQmb1RL3laxa7238VyB/zS1eIE= monitor@monitor
 final_message: "The system is finally up, after $UPTIME seconds"

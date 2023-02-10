@@ -77,7 +77,7 @@ resource "libvirt_domain" "domain-zabbix" {
       private_key         = file(var.ssh_private_key)
       bastion_host        = "ams-kvm-remote-host"
       bastion_user        = "deploys"
-      bastion_private_key = file("~/.ssh/deploys.pem")
+      bastion_private_key = file("~/.ssh/libvirt_deploys.pem")
       timeout             = "2m"
     }
   }
