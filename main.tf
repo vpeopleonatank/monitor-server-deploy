@@ -23,19 +23,19 @@ data "template_file" "network_config" {
   template = file("${path.module}/config/network_config.yml")
 }
 
-resource "libvirt_cloudinit_disk" "commoninit" {
-  name           = "commoninit.iso"
-  user_data      = data.template_file.user_data.rendered
-  network_config = data.template_file.network_config.rendered
-  pool           = libvirt_pool.zabbix.name
-}
+# resource "libvirt_cloudinit_disk" "commoninit" {
+#   name           = "commoninit.iso"
+#   user_data      = data.template_file.user_data.rendered
+#   network_config = data.template_file.network_config.rendered
+#   pool           = libvirt_pool.zabbix.name
+# }
 
 resource "libvirt_domain" "domain-zabbix" {
   name   = var.zabbix_vm_hostname
   memory = "8000"
   vcpu   = 2
 
-  cloudinit = libvirt_cloudinit_disk.commoninit.id
+  # cloudinit = libvirt_cloudinit_disk.commoninit.id
 
   network_interface {
     network_name   = "default"
