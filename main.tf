@@ -1,5 +1,5 @@
 provider "libvirt" {
-  uri = "qemu+ssh://libvirt_deploys@mosv.vpoat.net/system"
+  uri = "qemu:///system"
 }
 
 resource "libvirt_pool" "zabbix" {
